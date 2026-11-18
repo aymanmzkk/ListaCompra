@@ -1,10 +1,12 @@
 package com.example.listacompra.ui.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -12,8 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.listacompra.R
@@ -30,7 +33,11 @@ fun ListaCompraScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Column(modifier = modifier.padding(16.dp)) {
+    Column(
+        modifier = modifier.padding(dimensionResource(R.dimen.margen_pantalla)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.espacio_pequeno))
+    ) {
+        ContadorPendientes(pendientes = uiState.pendientes)
         TextField(
             value = uiState.nuevoProducto,
             onValueChange = viewModel::onNuevoProductoChange,
@@ -53,4 +60,14 @@ fun ListaCompraScreen(
             }
         }
     }
+}
+
+/** "1 producto pendiente" / "3 productos pendientes" usando <plurals>. */
+@Composable
+fun ContadorPendientes(pendientes: Int, modifier: Modifier = Modifier) {
+    Text(
+        text = pluralStringResource(R.plurals.productos_pendientes, pendientes, pendientes),
+        style = MaterialTheme.typography.titleMedium,
+        modifier = modifier
+    )
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margen exterior de la pantalla -->
+    <dimen name="margen_pantalla">16dp</dimen>
+    <!-- Separación entre elementos -->
+    <dimen name="espacio_pequeno">8dp</dimen>
+</resources>

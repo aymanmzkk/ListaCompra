@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Shopping List</string>
+
+    <!-- Contador de la parte superior -->
+    <plurals name="productos_pendientes">
+        <item quantity="one">%d product pending</item>
+        <item quantity="other">%d products pending</item>
+    </plurals>
+
+    <!-- Alta de productos -->
     <string name="etiqueta_producto">Product</string>
     <string name="boton_anadir">Add</string>
     <string name="boton_eliminar">Delete</string>

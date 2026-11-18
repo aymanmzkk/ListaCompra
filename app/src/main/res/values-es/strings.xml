@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Lista de la compra</string>
+
+    <!-- Contador de la parte superior -->
+    <plurals name="productos_pendientes">
+        <item quantity="one">%d producto pendiente</item>
+        <item quantity="many">%d productos pendientes</item>
+        <item quantity="other">%d productos pendientes</item>
+    </plurals>
+
+    <!-- Alta de productos -->
+    <string name="etiqueta_producto">Producto</string>
+    <string name="boton_anadir">Añadir</string>
+    <string name="boton_eliminar">Eliminar</string>
+</resources>
