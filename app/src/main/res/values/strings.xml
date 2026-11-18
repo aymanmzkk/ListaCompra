@@ -18,7 +18,7 @@
     <!-- Descripciones de los iconos (accesibilidad) -->
     <string name="cd_comprado">Bought</string>
     <string name="cd_pendiente">Pending</string>
-    <string name="cd_eliminar">Delete product</string>
+    <string name="cd_eliminar">Delete %1$s</string>
     <string name="cd_lista_vacia">Empty shopping cart</string>
 
     <!-- Datos de ejemplo para las @Preview -->

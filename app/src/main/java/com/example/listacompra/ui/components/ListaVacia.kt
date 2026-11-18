@@ -29,11 +29,13 @@ fun ListaVacia(modifier: Modifier = Modifier) {
             Icon(
                 imageVector = Icons.Outlined.ShoppingCart,
                 contentDescription = stringResource(R.string.cd_lista_vacia),
+                tint = MaterialTheme.colorScheme.outline,
                 modifier = Modifier.size(dimensionResource(R.dimen.tamano_icono_lista_vacia))
             )
             Text(
                 text = stringResource(R.string.lista_vacia),
                 style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
             )
         }

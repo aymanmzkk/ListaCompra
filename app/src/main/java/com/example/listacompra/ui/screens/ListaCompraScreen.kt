@@ -1,5 +1,6 @@
 package com.example.listacompra.ui.screens
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -70,7 +72,15 @@ fun ListaCompraContent(
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        topBar = { TopAppBar(title = { Text(stringResource(R.string.app_name)) }) }
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.app_name)) },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            )
+        }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -81,7 +91,10 @@ fun ListaCompraContent(
                 .padding(horizontal = dimensionResource(R.dimen.margen_pantalla)),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.espacio_mediano))
         ) {
-            ContadorPendientes(pendientes = uiState.pendientes)
+            ContadorPendientes(
+                pendientes = uiState.pendientes,
+                modifier = Modifier.padding(top = dimensionResource(R.dimen.espacio_mediano))
+            )
 
             NuevoProductoRow(
                 texto = uiState.nuevoProducto,
@@ -118,6 +131,7 @@ fun ContadorPendientes(pendientes: Int, modifier: Modifier = Modifier) {
     Text(
         text = pluralStringResource(R.plurals.productos_pendientes, pendientes, pendientes),
         style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.primary,
         modifier = modifier
     )
 }
@@ -129,7 +143,12 @@ private fun productosEjemplo(): List<Producto> =
         Producto(id = i.toLong(), nombre = nombre, comprado = i == 1)
     }
 
-@Preview(showBackground = true)
+@Preview(name = "Lista - claro", showBackground = true)
+@Preview(
+    name = "Lista - oscuro",
+    showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+)
 @Composable
 private fun ListaCompraPreview() {
     ListaCompraTheme {
@@ -140,7 +159,12 @@ private fun ListaCompraPreview() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(name = "Vacía - claro", showBackground = true)
+@Preview(
+    name = "Vacía - oscuro",
+    showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+)
 @Composable
 private fun ListaVaciaPreview() {
     ListaCompraTheme {

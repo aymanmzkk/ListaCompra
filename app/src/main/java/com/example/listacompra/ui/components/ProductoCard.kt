@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -19,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextDecoration
 import com.example.listacompra.R
 import com.example.listacompra.data.Producto
@@ -28,6 +31,8 @@ import com.example.listacompra.data.Producto
  *
  * Se usa un Box para superponer el icono de estado en la esquina superior
  * derecha de la tarjeta, por encima de la fila con el nombre y el botón borrar.
+ * Todos los colores salen de MaterialTheme.colorScheme, así la tarjeta se ve
+ * bien tanto en modo claro como en modo oscuro.
  */
 @Composable
 fun ProductoCard(
@@ -36,8 +41,25 @@ fun ProductoCard(
     onEliminar: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(onClick = onClick, modifier = modifier.fillMaxWidth()) {
-        Box(modifier = Modifier.fillMaxWidth()) {
+    val colores = MaterialTheme.colorScheme
+
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = if (producto.comprado) colores.surfaceContainerHighest else colores.secondaryContainer,
+            contentColor = if (producto.comprado) colores.onSurfaceVariant else colores.onSecondaryContainer
+        )
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                // Accesibilidad: TalkBack lo anuncia como casilla marcada / no marcada
+                .toggleable(
+                    value = producto.comprado,
+                    role = Role.Checkbox,
+                    onValueChange = { onClick() }
+                )
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -58,7 +80,7 @@ fun ProductoCard(
                 IconButton(onClick = onEliminar) {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
-                        contentDescription = stringResource(R.string.cd_eliminar)
+                        contentDescription = stringResource(R.string.cd_eliminar, producto.nombre)
                     )
                 }
             }
@@ -69,6 +91,7 @@ fun ProductoCard(
                 contentDescription = stringResource(
                     if (producto.comprado) R.string.cd_comprado else R.string.cd_pendiente
                 ),
+                tint = if (producto.comprado) colores.primary else colores.onSecondaryContainer,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(dimensionResource(R.dimen.margen_icono_esquina))

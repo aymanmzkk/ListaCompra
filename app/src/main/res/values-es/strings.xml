@@ -19,7 +19,7 @@
     <!-- Descripciones de los iconos (accesibilidad) -->
     <string name="cd_comprado">Comprado</string>
     <string name="cd_pendiente">Pendiente</string>
-    <string name="cd_eliminar">Eliminar producto</string>
+    <string name="cd_eliminar">Eliminar %1$s</string>
     <string name="cd_lista_vacia">Carrito vacío</string>
 
     <!-- Datos de ejemplo para las @Preview -->
