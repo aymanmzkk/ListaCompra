@@ -9,6 +9,23 @@
 
     <!-- Alta de productos -->
     <string name="etiqueta_producto">Product</string>
+    <string name="placeholder_producto">e.g. Milk</string>
     <string name="boton_anadir">Add</string>
-    <string name="boton_eliminar">Delete</string>
+
+    <!-- Lista vacía -->
+    <string name="lista_vacia">Your shopping list is empty.\nAdd a product above to get started.</string>
+
+    <!-- Descripciones de los iconos (accesibilidad) -->
+    <string name="cd_comprado">Bought</string>
+    <string name="cd_pendiente">Pending</string>
+    <string name="cd_eliminar">Delete product</string>
+    <string name="cd_lista_vacia">Empty shopping cart</string>
+
+    <!-- Datos de ejemplo para las @Preview -->
+    <string-array name="productos_ejemplo">
+        <item>Milk</item>
+        <item>Bread</item>
+        <item>Eggs</item>
+        <item>Apples</item>
+    </string-array>
 </resources>

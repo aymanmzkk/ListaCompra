@@ -4,4 +4,15 @@
     <dimen name="margen_pantalla">16dp</dimen>
     <!-- Separación entre elementos -->
     <dimen name="espacio_pequeno">8dp</dimen>
+    <dimen name="espacio_mediano">12dp</dimen>
+
+    <!-- Tarjeta de producto -->
+    <dimen name="padding_tarjeta">16dp</dimen>
+    <dimen name="margen_icono_esquina">8dp</dimen>
+    <dimen name="tamano_icono_estado">20dp</dimen>
+    <!-- Hueco a la derecha de la fila para que el icono de la esquina no se solape -->
+    <dimen name="hueco_icono_estado">28dp</dimen>
+
+    <!-- Mensaje de lista vacía -->
+    <dimen name="tamano_icono_lista_vacia">72dp</dimen>
 </resources>
